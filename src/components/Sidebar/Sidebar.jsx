@@ -1,6 +1,6 @@
 import { useTheme } from "@mui/styles";
 import useStyles from "./styles";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetGenresQuery } from "../../services/TMDB.js";
 import genreIcons from "../../assets/genres";
@@ -38,6 +38,9 @@ const Sidebar = ({ setMobileOpen }) => {
     (state) => state.currentGenreOrCategory
   );
   // console.log(genreIdOrCategoryName);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
     <>
