@@ -24,9 +24,9 @@ const categoties = [
 ];
 
 const blueLogo =
-  "https://fontmeme.com/permalink/220917/8208f782f2c5c4a9cfc9379a5f1e7dca.png";
+  "https://fontmeme.com/permalink/220920/6ce3a52cab45a0c7adeffb63af0ee5e4.png";
 const redLogo =
-  "https://fontmeme.com/permalink/220917/160554f0ad9c67b09befb20bc9f255d0.png";
+  "https://fontmeme.com/permalink/220920/1a6fb3bd86dc9a3fd73cb875f56497a4.png";
 
 const Sidebar = ({ setMobileOpen }) => {
   const classes = useStyles();
@@ -40,7 +40,7 @@ const Sidebar = ({ setMobileOpen }) => {
   // console.log(genreIdOrCategoryName);
   useEffect(() => {
     setMobileOpen(false);
-  }, [genreIdOrCategoryName]);
+  }, [genreIdOrCategoryName, setMobileOpen]);
 
   return (
     <>
@@ -64,7 +64,7 @@ const Sidebar = ({ setMobileOpen }) => {
                 <img
                   src={genreIcons[label.toLowerCase()]}
                   alt="genraImage"
-                  className={classes.genreImages}
+                  className={classes.genraImage}
                   height={30}
                 />
               </ListItemIcon>
@@ -91,7 +91,7 @@ const Sidebar = ({ setMobileOpen }) => {
                   <img
                     src={genreIcons[name.toLowerCase()]}
                     alt="genraImage"
-                    className={classes.genreImages}
+                    className={classes.genraImage}
                     height={30}
                   />
                 </ListItemIcon>

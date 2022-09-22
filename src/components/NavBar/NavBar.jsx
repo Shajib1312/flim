@@ -13,8 +13,9 @@ import {
   Toolbar,
   useMediaQuery,
 } from "@mui/material";
+import { ColorModeContext } from "../../utils/ToggleColorMode";
 import { useTheme } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Sidebar, Search } from "..";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +28,7 @@ const NavBar = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
   const token = localStorage.getItem("request_token");
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector(userSelector);
@@ -68,7 +70,7 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={colorMode.toggleColorMode}>
             {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -81,14 +83,14 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 component={Link}
-                to={`/profile/${user.id}`}
+                to={`/profile/${user?.id}`}
                 className={classes.linkButton}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
                 <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="Profile"
-                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar?.avatar_path}`}
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                 />
               </Button>
             )}
